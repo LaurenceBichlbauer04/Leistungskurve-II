@@ -1,4 +1,4 @@
-import pandas as pd # pyright: ignore[reportMissingModuleSource]
+import pandas as pd
 
 def load_activity(data):
     df = pd.read_csv(data)
