@@ -2,23 +2,25 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import pandas as pd
 from src import powercurve
->>> main
-
-
+from src import load_data
 
 def main():
 
-    #df = powercurve.curve_data("data/activity.csv")
-    df = pd.DataFrame({
-    "Time": [1, 5, 10, 30, 60, 120, 300, 600, 1200, 1800, 3600],
-    "Power": [1100, 950, 850, 700, 620, 550, 450, 400, 350, 320, 280]
-    })
+    data = load_data.load_activity("data/activity.csv")
+
+    df = powercurve.curve_data(data)
+    #print(df)
+    
+    # df = pd.DataFrame({
+    # "Time": [1, 5, 10, 30, 60, 120, 300, 600, 1200, 1800, 3600],
+    # "Power": [1100, 950, 850, 700, 620, 550, 450, 400, 350, 320, 280]
+    # })
 
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
             x = df["Time"],
-            y = df["Power"],
+            y = df["max_avg"],
             mode="lines",
             line=dict(color="red"),
             line_shape="spline",
@@ -29,7 +31,7 @@ def main():
     fig.update_layout(
         title="Power Curve",
         xaxis_type="log",
-        xaxis_title="Duration (s)",
+        xaxis_title="Duration",
         yaxis_title="Power (W)",
         width=800,
         height=500,
@@ -39,7 +41,6 @@ def main():
     )
 
     fig.update_xaxes(
-        type="log",
         tickmode="array",
         tickvals=[1, 5, 10, 30, 60, 120, 300, 600, 1200, 1800, 3600],
         ticktext=[
