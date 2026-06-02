@@ -1,9 +1,8 @@
 import pandas as pd
 
-def load_activity(data):
-    df = pd.read_csv(data)
-    df["Time"] = range(len(df))
-    return df
+def load_activity(text):
+    with open(text, "r") as file:
+        return pd.read_csv(file)
 
 
 

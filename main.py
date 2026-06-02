@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import pandas as pd
 from src import powercurve
-#from src import load_data
+>>> main
 
 
 
